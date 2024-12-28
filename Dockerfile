@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 as build-env
 # Copy everything and publish the release (publish implicitly restores and builds)
 WORKDIR /app
 COPY . ./
-RUN dotnet publish ./Console/Console.csproj -c Release -o out --no-self-contained
+RUN dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
 
 LABEL repository="https://github.com/dotnet/samples"
 LABEL homepage="https://github.com/dotnet/samples"
@@ -20,4 +20,4 @@ LABEL com.github.actions.color="orange"
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0
 COPY --from=build-env /app/out .
-ENTRYPOINT [ "dotnet", "/Console.dll" ]
+ENTRYPOINT [ "W3X-Builder", "/W3X-Builder.dll" ]
