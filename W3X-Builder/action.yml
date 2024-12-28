@@ -1,0 +1,26 @@
+name: 'The title of your GitHub Action'
+description: 'The description of your GitHub Action'
+branding:
+  icon: activity
+  color: orange
+inputs:
+  compile-jass:
+    description:
+      'Compiles the map script using JassHelper'
+    required: false
+outputs:
+  summary-title:
+    description:
+      'The title of the code metrics action.'
+  summary-details:
+    description:
+      'A detailed summary of all the projects that were flagged.'
+  updated-metrics:
+    description:
+      'A boolean value, indicating whether or not the action updated metrics.'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+  - '-c'
+  - ${{ inputs.compile-jass }}
