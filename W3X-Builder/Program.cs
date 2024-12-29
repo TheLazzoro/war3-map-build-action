@@ -2,7 +2,7 @@
 
 var workingDir = Environment.GetEnvironmentVariable("GITHUB_WORKSPACE");
 Console.WriteLine($"Working directory: {workingDir}");
-var files = Directory.GetFileSystemEntries(workingDir, ".w3x, .w3m", SearchOption.AllDirectories);
+var files = Directory.GetFileSystemEntries(workingDir, "*.w3x, *.w3m", SearchOption.AllDirectories);
 
 if (files.Length == 0)
 {
