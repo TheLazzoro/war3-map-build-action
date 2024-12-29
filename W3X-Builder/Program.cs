@@ -35,5 +35,12 @@ Console.WriteLine("Building map...");
 var map = Map.Open(mapFile);
 var builder = new MapBuilder(map);
 builder.Build(fullPath);
+
+if(!File.Exists(fullPath))
+{
+    Console.WriteLine("Could not write file.");
+    throw new Exception();
+}
+
 Console.WriteLine("Build complete!");
 Console.WriteLine("Path: " + fullPath);
