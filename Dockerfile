@@ -6,8 +6,8 @@ WORKDIR /app
 COPY . ./
 RUN dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
 
-LABEL repository="https://github.com/dotnet/samples"
-LABEL homepage="https://github.com/dotnet/samples"
+LABEL repository="https://github.com/TheLazzoro/war3-map-build-action"
+LABEL homepage="https://github.com/TheLazzoro/war3-map-build-action"
 
 # Label as GitHub action
 LABEL com.github.actions.name="Build Warcraft III Map"
@@ -20,4 +20,4 @@ LABEL com.github.actions.color="orange"
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0
 COPY --from=build-env /app/out .
-ENTRYPOINT [ "W3X-Builder", "/W3X-Builder.dll" ]
+ENTRYPOINT [ "dotnet", "/W3X-Builder.dll" ]
