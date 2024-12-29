@@ -2,14 +2,19 @@
 
 var workingDir = Environment.GetEnvironmentVariable("GITHUB_WORKSPACE");
 Console.WriteLine($"Working directory: {workingDir}");
-var files = Directory.GetFileSystemEntries(workingDir, "*.w3x, *.w3m", SearchOption.AllDirectories);
+var maps_x = Directory.GetFileSystemEntries(workingDir, "*.w3x", SearchOption.AllDirectories);
+var maps_m = Directory.GetFileSystemEntries(workingDir, "*.w3m", SearchOption.AllDirectories);
 
-if (files.Length == 0)
+var files = new List<string>();
+files.AddRange(maps_x);
+files.AddRange(maps_m);
+
+if (files.Count == 0)
 {
     Console.WriteLine($"Did not find any Warcraft III map files");
     throw new Exception();
 }
-else if (files.Length > 1)
+else if (files.Count > 1)
 {
     Console.WriteLine($"Multiple Warcraft III map files found in repository. This action can only continue with a single map file.");
     Console.WriteLine($"Found:");
@@ -21,8 +26,10 @@ else if (files.Length > 1)
 }
 
 string mapFile = files[0];
+string outputDir = Path.Combine(workingDir, "output");
+Directory.CreateDirectory(outputDir);
 string name = Path.GetFileName(mapFile);
-string fullPath = Path.Combine(workingDir, name);
+string fullPath = Path.Combine(outputDir, name);
 
 Console.WriteLine("Building map...");
 var map = Map.Open(mapFile);
