@@ -21,6 +21,6 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-  - '-c'
-  - ${{ inputs.compile-jass }}
+  # args:
+  # - '-c'
+  # - ${{ inputs.compile-jass }}
