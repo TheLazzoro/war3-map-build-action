@@ -1,6 +1,6 @@
 ﻿using War3Net.Build;
 
-var workingDir = Environment.GetEnvironmentVariable("GITHUB_WORKSPACE");
+var workingDir = Environment.GetEnvironmentVariable("GITHUB_ACTION_PATH");
 Console.WriteLine($"Working directory: {workingDir}");
 var maps_x = Directory.GetFileSystemEntries(workingDir, "*.w3x", SearchOption.AllDirectories);
 var maps_m = Directory.GetFileSystemEntries(workingDir, "*.w3m", SearchOption.AllDirectories);
