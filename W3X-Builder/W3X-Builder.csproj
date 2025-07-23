@@ -10,7 +10,10 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="War3Net.Build" Version="5.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\War3Net\src\War3Net.Build\War3Net.Build.csproj" />
   </ItemGroup>
 
 </Project>

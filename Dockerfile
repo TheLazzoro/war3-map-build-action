@@ -4,6 +4,12 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 as build-env
 # Copy everything and publish the release (publish implicitly restores and builds)
 WORKDIR /app
 COPY . ./
+RUN git submodule init
+RUN git submodule update
+RUN cd War3Net
+RUN git submodule init
+RUN git submodule update
+RUN cd ..
 RUN dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
 
 LABEL repository="https://github.com/TheLazzoro/war3-map-build-action"
