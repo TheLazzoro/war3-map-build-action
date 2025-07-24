@@ -10,3 +10,6 @@ outputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+  - 'BUILDKIT_CONTEXT_KEEP_GIT_DIR'
+  - 'true'
