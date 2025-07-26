@@ -8,8 +8,8 @@ runs:
   using: 'composite'
   steps:
   - name: Checkout submodules
-    uses: actions/checkout@v4
     run: git sumodule update --init --recursive
+    shell: bash
 
   - name: Setup .NET
     uses: actions/checkout@v2
