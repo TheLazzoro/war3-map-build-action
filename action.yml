@@ -7,15 +7,6 @@ branding:
 runs:
   using: 'composite'
   steps:
-  - uses: actions/checkout@v2
-  - name: Checkout and init submodules
-    run: | 
-      git clone https://github.com/TheLazzoro/war3-map-build-action
-      git submodule update --init --recursive
-      cd war3-map-build-action
-    shell: bash
-    with:
-      repository: 'TheLazzoro/war3-map-build-action'
 
   - name: Setup .NET
     uses: actions/checkout@v2
@@ -26,6 +17,7 @@ runs:
   - name: Run
     run: |
       ls
+      git submodule update --init --recursive
       dotnet restore
       dotnet build --no-restore
       dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
