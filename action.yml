@@ -1,0 +1,29 @@
+name: 'W3X Builder'
+description: 'Outputs a Warcraft III map with all assets stripped away.'
+branding:
+  icon: activity
+  color: orange
+
+runs:
+  using: 'composite'
+  steps:
+  - name: Checkout submodules
+    uses: actions/checkout@v4
+    run: git sumodule update --init --recursive
+
+  - name: Setup .NET
+    uses: actions/checkout@v2
+    with:
+      dotnet-version: 8.x
+
+  - name: Restore dependencies
+    run: dotnet restore
+    shell: bash
+
+  - name: Build
+    run: dotnet build --no-restore
+    shell: bash
+
+  - name: Run
+    run: dotnet run /W3X-Builder.dll
+    shell: bash
