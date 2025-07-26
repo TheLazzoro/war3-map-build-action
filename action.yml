@@ -19,6 +19,7 @@ runs:
     shell: bash
     run: |
       ls
+      git submodule update --init --recursive
       echo REMOVING TEST FILES
       rm -R ./War3Net/tests
 
@@ -42,7 +43,6 @@ runs:
     shell: bash
     run: |
       cd ./W3X-Builder/
-      git submodule update --init --recursive
       dotnet restore
       dotnet build --no-restore
       dotnet run --project ./W3X-Builder/W3X-Builder.csproj
