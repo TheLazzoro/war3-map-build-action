@@ -20,9 +20,12 @@ runs:
       ls
       git submodule update --init --recursive
       dotnet restore
-      dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
+      dotnet run
       echo WORKING DIR
       pwd
       ls ./W3X-Builder/bin/Release/net8.0/
-      ./W3X-Builder/bin/Release/net8.0/W3X-Builder.exe
     shell: bash
+
+# dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
+# ./W3X-Builder/bin/Release/net8.0/W3X-Builder.exe
+  
