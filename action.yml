@@ -20,7 +20,7 @@ runs:
       ls
       git submodule update --init --recursive
       dotnet restore
-      dotnet run ./W3X-Builder/W3X-Builder.csproj
+      dotnet run --project ./W3X-Builder/W3X-Builder.csproj
       echo WORKING DIR
       pwd
       ls ./W3X-Builder/bin/Release/net8.0/
