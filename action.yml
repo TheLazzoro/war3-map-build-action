@@ -8,8 +8,10 @@ runs:
   using: 'composite'
   steps:
   - uses: actions/checkout@v2
-  - name: Checkout submodules
-    run: git submodule update --init --recursive
+  - name: Checkout and init submodules
+    run: | 
+      git clone https://github.com/TheLazzoro/war3-map-build-action
+      git submodule update --init --recursive
     shell: bash
 
   - name: Setup .NET
