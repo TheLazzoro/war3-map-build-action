@@ -16,6 +16,10 @@ runs:
     with:
       dotnet-version: 8.x
 
+  - name: Check files
+    run: ls
+    shell: bash
+
   - name: Restore dependencies
     run: dotnet restore
     shell: bash
@@ -24,6 +28,10 @@ runs:
     run: dotnet build --no-restore
     shell: bash
 
+  - name: Publish
+    run: dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
+    shell: bash
+
   - name: Run
-    run: dotnet run /W3X-Builder.dll
+    run: dotnet run ./W3X-Builder.dll
     shell: bash
