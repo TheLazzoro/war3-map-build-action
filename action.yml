@@ -21,12 +21,6 @@ runs:
     run: |
       ls
       rm -R ./War3Net/tests
-      dotnet restore
-      ls
-      dotnet run --project ./W3X-Builder/W3X-Builder.csproj
-      echo WORKING DIR
-      pwd
-      ls ./W3X-Builder/bin/Release/net8.0/
 
   - name: Archive Artifact
     uses: actions/upload-artifact@v4
@@ -47,4 +41,6 @@ runs:
   - name: Run
     shell: bash
     run: |
-      ./W3X-Builder/W3X-Builder.csproj
+      ls
+      dotnet build --no-restore
+      dotnet run --project ./W3X-Builder/W3X-Builder.csproj
