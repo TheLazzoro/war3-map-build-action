@@ -23,6 +23,6 @@ runs:
       dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
       echo WORKING DIR
       pwd
-      ls /W3X-Builder/bin/Release/net8.0/
+      ls ./W3X-Builder/bin/Release/net8.0/
       ./W3X-Builder/bin/Release/net8.0/W3X-Builder.exe
     shell: bash
