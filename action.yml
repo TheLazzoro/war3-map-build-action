@@ -22,5 +22,7 @@ runs:
       dotnet restore
       dotnet build --no-restore
       dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
-      dotnet run ./W3X-Builder.dll
+      echo WORKING DIR
+      pwd
+      dotnet run ./bin/Release/net8.0/W3X-Builder.dll
     shell: bash
