@@ -14,11 +14,12 @@ runs:
     with:
       dotnet-version: 8.x
       repository: 'TheLazzoro/war3-map-build-action'
+      submodules: true
 
   - name: Run
+    shell: bash
     run: |
       ls
-      git submodule update --init --recursive
       rm -R ./War3Net/tests
       dotnet restore
       ls
@@ -26,8 +27,24 @@ runs:
       echo WORKING DIR
       pwd
       ls ./W3X-Builder/bin/Release/net8.0/
-    shell: bash
 
-# dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
-# ./W3X-Builder/bin/Release/net8.0/W3X-Builder.exe
-  
+  - name: Archive Artifact
+    uses: actions/upload-artifact@v4
+    with:
+      name: builder
+      path: ./W3X-Builder/
+
+  # Checks out repository that runs this action
+  - name: Checkout repo
+    uses: actions/checkout@v2
+
+  - name: Download Artifact
+    uses: actions/download-artifact@v4
+    with:
+      name: builder
+      path: W3X-Builder
+
+  - name: Run
+    shell: bash
+    run: |
+      ./W3X-Builder/W3X-Builder.csproj
