@@ -20,6 +20,7 @@ runs:
     shell: bash
     run: |
       ls
+      echo REMOVING TEST FILES
       rm -R ./War3Net/tests
 
   - name: Archive Artifact
@@ -42,6 +43,6 @@ runs:
     shell: bash
     run: |
       cd ./W3X-Builder/
-      ls
-      dotnet build --no-restore --project
+      dotnet restore
+      dotnet build --no-restore
       dotnet run --project ./W3X-Builder/W3X-Builder.csproj
