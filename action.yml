@@ -14,7 +14,6 @@ runs:
     with:
       dotnet-version: 8.x
       repository: 'TheLazzoro/war3-map-build-action'
-      submodules: true
 
   - name: Run
     shell: bash
@@ -43,6 +42,7 @@ runs:
     shell: bash
     run: |
       cd ./W3X-Builder/
+      git submodule update --init --recursive
       dotnet restore
       dotnet build --no-restore
       dotnet run --project ./W3X-Builder/W3X-Builder.csproj
