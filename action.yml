@@ -12,6 +12,7 @@ runs:
     run: | 
       git clone https://github.com/TheLazzoro/war3-map-build-action
       git submodule update --init --recursive
+      cd war3-map-build-action
     shell: bash
 
   - name: Setup .NET
