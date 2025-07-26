@@ -18,8 +18,8 @@ runs:
   - name: Run
     run: |
       ls
-      rm -R ./War3Net/tests
       git submodule update --init --recursive
+      rm -R ./War3Net/tests
       dotnet restore
       ls
       dotnet run --project ./W3X-Builder/W3X-Builder.csproj
