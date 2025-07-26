@@ -41,6 +41,7 @@ runs:
   - name: Run
     shell: bash
     run: |
+      cd ./W3X-Builder/
       ls
-      dotnet build --no-restore
+      dotnet build --no-restore --project
       dotnet run --project ./W3X-Builder/W3X-Builder.csproj
