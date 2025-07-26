@@ -6,7 +6,6 @@ branding:
 
 runs:
   using: 'composite'
-  runs-on: windows-latest
 
   steps:
 
