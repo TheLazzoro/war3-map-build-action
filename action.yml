@@ -6,6 +6,8 @@ branding:
 
 runs:
   using: 'composite'
+  runs-on: windows-latest
+
   steps:
 
   - name: Setup .NET
@@ -23,6 +25,3 @@ runs:
       dotnet publish ./W3X-Builder/W3X-Builder.csproj -c Release -o out --no-self-contained
       dotnet run ./W3X-Builder.dll
     shell: bash
-    # with:
-    #   repository: 'TheLazzoro/war3-map-build-action'
-
