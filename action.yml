@@ -1,0 +1,55 @@
+name: 'W3X Builder'
+description: 'Outputs a Warcraft III map with all assets stripped away.'
+branding:
+  icon: activity
+  color: orange
+
+runs:
+  using: 'composite'
+
+  steps:
+
+  - name: Checkout map builder repo
+    uses: actions/checkout@v2
+    with:
+      repository: 'TheLazzoro/war3-map-build-action'
+
+  - name: Run
+    shell: bash
+    run: |
+      ls
+      git submodule update --init --recursive
+      echo REMOVING TEST FILES
+      rm -R ./War3Net/tests
+
+  - name: Archive Artifact
+    uses: actions/upload-artifact@v4
+    with:
+      name: builder
+      path: ./
+
+  # Checks out repository that runs this action
+  - name: Checkout repo
+    uses: actions/checkout@v2
+
+  - name: Download Artifact
+    uses: actions/download-artifact@v4
+    with:
+      name: builder
+      path: W3X-Builder
+
+  - name: Setup .NET for Linux without package manager # we need the windows-only dll's that are excluded from the package manager install.
+    shell: bash
+    run: | 
+      wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+      chmod +x ./dotnet-install.sh
+      ./dotnet-install.sh --version latest
+
+  - name: Build and run
+    shell: bash
+    run: |
+      ls -a
+      cd ./W3X-Builder/
+      ~/.dotnet/dotnet restore
+      ~/.dotnet/dotnet build --no-restore
+      ~/.dotnet/dotnet run --project ./W3X-Builder/W3X-Builder.csproj
