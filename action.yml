@@ -15,6 +15,7 @@ runs:
       repository: 'TheLazzoro/war3-map-build-action'
 
   - name: Setup .NET for Linux without package manager # we need the windows-only dll's that are excluded from the package manager install.
+    shell: bash
     run: | 
       wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
       chmod +x ./dotnet-install.sh
