@@ -14,13 +14,6 @@ runs:
     with:
       repository: 'TheLazzoro/war3-map-build-action'
 
-  - name: Setup .NET for Linux without package manager # we need the windows-only dll's that are excluded from the package manager install.
-    shell: bash
-    run: | 
-      wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
-      chmod +x ./dotnet-install.sh
-      ./dotnet-install.sh --version latest
-
   - name: Run
     shell: bash
     run: |
@@ -45,10 +38,18 @@ runs:
       name: builder
       path: W3X-Builder
 
-  - name: Run
+  - name: Setup .NET for Linux without package manager # we need the windows-only dll's that are excluded from the package manager install.
+    shell: bash
+    run: | 
+      wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+      chmod +x ./dotnet-install.sh
+      ./dotnet-install.sh --version latest
+
+  - name: Build and run
     shell: bash
     run: |
+      ls -a
       cd ./W3X-Builder/
-      dotnet restore
-      dotnet build --no-restore
-      dotnet run --project ./W3X-Builder/W3X-Builder.csproj
+      ./.dotnet/dotnet restore
+      ./.dotnet/dotnet build --no-restore
+      ./.dotnet/dotnet run --project ./W3X-Builder/W3X-Builder.csproj
