@@ -9,11 +9,16 @@ runs:
 
   steps:
 
-  - name: Setup .NET
+  - name: Checkout map builder repo
     uses: actions/checkout@v2
     with:
-      dotnet-version: 8.x
       repository: 'TheLazzoro/war3-map-build-action'
+
+  - name: Setup .NET for Linux without package manager # we need the windows-only dll's that are excluded from the package manager install.
+    run: | 
+      wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+      chmod +x ./dotnet-install.sh
+      ./dotnet-install.sh --version 8.x
 
   - name: Run
     shell: bash
