@@ -38,6 +38,11 @@ runs:
       name: builder
       path: W3X-Builder
 
+  - name: Delete Artifact
+    uses: geekyeggo/delete-artifact@v5
+    with:
+      name: builder
+
   - name: Setup .NET for Linux without package manager # we need the windows-only dll's that are excluded from the package manager install.
     shell: bash
     run: | 
