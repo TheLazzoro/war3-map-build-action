@@ -21,6 +21,9 @@ runs:
       git submodule update --init --recursive
       echo REMOVING TEST FILES
       rm -R ./War3Net/tests
+      # .NET 10 no longer bundles the netstandard2.1 targeting pack, so allow it from nuget.org
+      grep -q 'pattern="NETStandard.Library.Ref"' ./War3Net/nuget.config || \
+        sed -i 's|^\(\s*\)<package pattern="NETStandard.Library" />|&\n\1<package pattern="NETStandard.Library.Ref" />|' ./War3Net/nuget.config
 
   - name: Archive Artifact
     uses: actions/upload-artifact@v4
