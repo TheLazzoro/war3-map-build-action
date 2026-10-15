@@ -58,6 +58,6 @@ runs:
     run: |
       ls -a
       cd ./W3X-Builder/
-      ~/.dotnet/dotnet restore
+      ~/.dotnet/dotnet restore -clp:ErrorsOnly
       ~/.dotnet/dotnet build --no-restore
       ~/.dotnet/dotnet run --project ./W3X-Builder/W3X-Builder.csproj
